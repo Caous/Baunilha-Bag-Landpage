@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Manrope:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+<style>
+  html, body { margin: 0; padding: 0; background: #FBF8F1; color: #1F1814; font-family: 'Manrope', sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #1F1814; text-decoration: none; }
+  a:hover { color: #8B6B3D; }
+  ::selection { background: #E3D7BD; color: #1F1814; }
+  button:focus-visible, a:focus-visible { outline: 2px solid #8B6B3D; outline-offset: 3px; }
+  @keyframes bbFloat { from { transform: translateY(-8px) rotate(-2deg); } to { transform: translateY(10px) rotate(2.5deg); } }
+  @keyframes bbFloatB { from { transform: translateY(9px) rotate(2deg); } to { transform: translateY(-9px) rotate(-2deg); } }
+  @keyframes bbFiber { 0% { transform: translateY(0) rotate(12deg); opacity: 0; } 15% { opacity: .5; } 85% { opacity: .4; } 100% { transform: translateY(-140px) rotate(40deg); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
+</style>
+</helmet>
+<div style="background:#FBF8F1;color:#1F1814;font-family:'Manrope',sans-serif;overflow-x:hidden">
+
+<header data-header="1" style="position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px clamp(20px,5vw,64px);transition:background .4s,border-color .4s,backdrop-filter .4s;border-bottom:1px solid transparent">
+  <a href="#topo" style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;letter-spacing:.5px;color:#1F1814">Baunilha Bag</a>
+  <nav aria-label="Navegação principal" style="display:flex;align-items:center;gap:clamp(14px,2.5vw,32px)">
+    <a href="#produtos" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#3A2F26">Peças</a>
+    <a href="#personalizacao" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#3A2F26">Sob medida</a>
+    <a href="#ajustes" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#3A2F26">Ajustes</a>
+    <a href="#sobre" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#3A2F26">Sobre</a>
+    <a data-magnetic="1" href="{{ waMain }}" target="_blank" rel="noopener" style="font-family:'Manrope',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;background:#1F1814;color:#F5EFE3;padding:12px 22px;border:1px solid #1F1814;transition:background .35s" style-hover="background:#3A2F26;color:#F5EFE3">WhatsApp</a>
+  </nav>
+</header>
+
+<section id="topo" data-hero="1" data-screen-label="Hero" style="position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden">
+  <div data-hero-media="1" style="position:absolute;inset:0;will-change:transform">
+    <video src="https://upload.higgsfield.ai/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/3a36a580-1a23-4a92-8989-2093aef793d1.mp4" poster="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223431_fc729c2c-fc66-4763-b198-cc39ee1ff054.png" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" aria-label="Vídeo do atelier: mãos alisando tecido de linho cru sobre a mesa" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+    <div style="position:absolute;inset:0;background:linear-gradient(100deg,rgba(251,248,241,.92) 0%,rgba(251,248,241,.55) 42%,rgba(251,248,241,0) 72%)"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(251,248,241,.85) 0%,rgba(251,248,241,0) 38%)"></div>
+  </div>
+  <span aria-hidden="true" style="position:absolute;left:18%;top:30%;width:2px;height:26px;background:rgba(139,107,61,.3);animation:bbFiber 11s linear infinite;z-index:2"></span>
+  <span aria-hidden="true" style="position:absolute;left:55%;top:60%;width:2px;height:18px;background:rgba(139,107,61,.25);animation:bbFiber 14s linear 3s infinite;z-index:2"></span>
+  <span aria-hidden="true" style="position:absolute;left:78%;top:75%;width:2px;height:22px;background:rgba(58,47,38,.2);animation:bbFiber 12s linear 6s infinite;z-index:2"></span>
+  <div data-hero-content="1" style="position:relative;z-index:4;padding:0 clamp(20px,5vw,64px) clamp(56px,10vh,110px);max-width:860px">
+    <p style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:#7A6A57;margin:0 0 22px">Atelier de costura artesanal — São Paulo</p>
+    <h1 data-lines="1" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(46px,8vw,110px);line-height:1.02;margin:0 0 26px;color:#1F1814">
+      <span style="display:block;overflow:hidden"><span data-line="1" style="display:block">Feito à mão.</span></span>
+      <span style="display:block;overflow:hidden"><span data-line="1" style="display:block">Pensado para <em style="font-style:italic;color:#8B6B3D">durar</em>.</span></span>
+    </h1>
+    <p data-reveal="1" style="font-size:clamp(15px,1.6vw,19px);font-weight:300;line-height:1.65;color:#3A2F26;max-width:52ch;margin:0 0 36px">Peças artesanais, acessórios e projetos em tecido criados um a um no atelier Baunilha Bag.</p>
+    <div data-reveal="1" style="display:flex;flex-wrap:wrap;gap:14px">
+      <a data-magnetic="1" href="#produtos" style="display:inline-flex;align-items:center;gap:10px;background:#1F1814;color:#F5EFE3;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:18px 32px;border:1px solid #1F1814;transition:background .35s" style-hover="background:#3A2F26;color:#F5EFE3">Conhecer as peças</a>
+      <a data-magnetic="1" href="{{ waSobMedida }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:transparent;color:#1F1814;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:18px 32px;border:1px solid #1F1814;transition:background .35s,color .35s" style-hover="background:#1F1814;color:#F5EFE3">Pedir algo sob medida</a>
+    </div>
+  </div>
+  <div aria-hidden="true" style="position:absolute;bottom:28px;right:clamp(20px,5vw,64px);z-index:4;display:flex;align-items:center;gap:10px">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:#7A6A57">Role para entrar no atelier</span>
+    <span style="display:block;width:36px;height:1px;background:rgba(31,24,20,.3)"></span>
+  </div>
+</section>
+
+<div aria-hidden="true" style="padding:clamp(28px,5vh,56px) 0;background:#FBF8F1">
+  <div data-stitchline="1" style="height:0;border-top:1.5px dashed rgba(139,107,61,.55);width:0;margin:0 auto;max-width:100%"></div>
+</div>
+
+<section id="atelier" data-screen-label="O Atelier" style="background:#FBF8F1;padding:clamp(40px,7vh,90px) clamp(20px,5vw,64px) clamp(80px,12vh,150px)">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(40px,6vw,100px);max-width:1360px;margin:0 auto;align-items:center">
+    <div>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:#7A6A57;margin:0 0 26px">01 / O Atelier</p>
+      <h2 data-lines="1" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(34px,4.6vw,66px);line-height:1.08;margin:0 0 30px">
+        <span style="display:block;overflow:hidden"><span data-line="1" style="display:block">Algumas ideias começam no papel.</span></span>
+        <span style="display:block;overflow:hidden"><span data-line="1" style="display:block">As nossas começam no <em style="font-style:italic;color:#8B6B3D">tecido</em>.</span></span>
+      </h2>
+      <p data-reveal="1" style="font-weight:300;font-size:clamp(15px,1.4vw,18px);line-height:1.75;color:#3A2F26;max-width:48ch;margin:0 0 18px">Na Baunilha Bag, cada peça passa pelas mãos da Valéria: escolha do tecido, corte, estrutura, costura e acabamento.</p>
+      <p data-reveal="1" style="font-weight:300;font-size:clamp(15px,1.4vw,18px);line-height:1.75;color:#3A2F26;max-width:48ch;margin:0 0 6px">Não existe produção em massa.</p>
+      <p data-reveal="1" style="font-weight:400;font-size:clamp(15px,1.4vw,18px);line-height:1.75;color:#1F1814;max-width:48ch;margin:0">Existem peças feitas uma a uma.</p>
+    </div>
+    <div style="position:relative;max-width:520px;justify-self:center;width:100%">
+      <div data-imgreveal="1" style="aspect-ratio:3/4;overflow:hidden">
+        <img data-parallax="1" src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223431_c669addc-f918-43f9-93a3-c5af7fa89945.png" alt="Mãos da Valéria guiando o tecido na máquina de costura" style="width:100%;height:112%;object-fit:cover;display:block;will-change:transform">
+      </div>
+      <div style="position:absolute;top:8%;left:-14px;display:flex;flex-direction:column;gap:10px" aria-hidden="true">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;background:#FBF8F1;border:1px solid rgba(31,24,20,.12);padding:6px 10px;color:#3A2F26">CORTE</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;background:#FBF8F1;border:1px solid rgba(31,24,20,.12);padding:6px 10px;color:#3A2F26">COSTURA</span>
+      </div>
+      <div style="position:absolute;bottom:10%;right:-14px;display:flex;flex-direction:column;gap:10px;align-items:flex-end" aria-hidden="true">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;background:#FBF8F1;border:1px solid rgba(31,24,20,.12);padding:6px 10px;color:#3A2F26">ACABAMENTO</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;background:#1F1814;border:1px solid #1F1814;padding:6px 10px;color:#F5EFE3">FEITO À MÃO</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="categorias" data-scrolly="1" data-screen-label="O que fazemos" style="position:relative;background:#F7F2E6;border-top:1px solid rgba(31,24,20,.06);height:800vh">
+  <div data-spin="1" style="position:relative;height:100vh;overflow:hidden">
+    <div data-sintro="1" style="position:absolute;inset:0;z-index:2;pointer-events:none;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 clamp(20px,6vw,80px);will-change:transform,opacity">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:#7A6A57;margin:0 0 26px">02 / O que fazemos</p>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px,5.4vw,78px);line-height:1.06;margin:0 0 20px;max-width:18ch;color:#1F1814">Costura sem catálogo de <em style="font-style:italic;color:#8B6B3D">possibilidades</em>.</h2>
+      <p style="font-weight:300;font-size:clamp(15px,1.4vw,18px);line-height:1.7;color:#3A2F26;max-width:52ch;margin:0 0 36px">Do acessório que acompanha sua rotina ao projeto que existe apenas na sua cabeça.</p>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:#7A6A57;margin:0">Role para percorrer as oito frentes do atelier</p>
+    </div>
+    <div data-sframe="1" style="position:absolute;inset:0;display:grid;place-items:center;opacity:0;will-change:transform,opacity">
+      <div data-sframe-img="1" style="width:min(62vh,76vw);aspect-ratio:1;overflow:hidden;will-change:transform">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223431_3f8ff39e-cde1-45ca-a9bb-d8d087d99bb8.png" alt="Bolsas" style="width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;display:block">
+      </div>
+      <div data-sframe-txt="1" style="position:absolute;left:clamp(20px,5vw,64px);bottom:clamp(28px,6vh,72px);max-width:70vw;will-change:transform,opacity">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#7A6A57;margin:0 0 12px">01 / 08 — Femininas &amp; masculinas</p>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px,6vw,84px);line-height:1.02;color:#1F1814;margin:0 0 14px">Bolsas</h3>
+        <a href="#produtos" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#8B6B3D">Explorar →</a>
+      </div>
+      <p style="position:absolute;right:clamp(20px,5vw,64px);bottom:clamp(28px,6vh,72px);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#7A6A57;margin:0">Baunilha Bag — atelier</p>
+    </div>
+    <div data-sframe="1" style="position:absolute;inset:0;display:grid;place-items:center;opacity:0;will-change:transform,opacity">
+      <div data-sframe-img="1" style="width:min(62vh,76vw);aspect-ratio:1;overflow:hidden;will-change:transform">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223431_b39706f1-b0d2-48f4-9bd3-1833fcae665f.png" alt="Nécessaires" style="width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;display:block">
+      </div>
+      <div data-sframe-txt="1" style="position:absolute;left:clamp(20px,5vw,64px);bottom:clamp(28px,6vh,72px);max-width:70vw;will-change:transform,opacity">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#7A6A57;margin:0 0 12px">02 / 08 — Rotina &amp; viagem</p>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px,6vw,84px);line-height:1.02;color:#1F1814;margin:0 0 14px">Nécessaires</h3>
+        <a href="#produtos" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#8B6B3D">Explorar →</a>
+      </div>
+      <p style="position:absolute;right:clamp(20px,5vw,64px);bottom:clamp(28px,6vh,72px);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#7A6A57;margin:0">Baunilha Bag — atelier</p>
+    </div>
+    <div data-sframe="1" style="position:absolute;inset:0;display:grid;place-items:center;opacity:0;will-change:transform,opacity">
+      <div data-sframe-img="1" style="width:min(62vh,76vw);aspect-ratio:1;overflow:hidden;will-change:transform">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223431_d5318982-bf41-4028-8011-5fbe1250837e.png" alt="Porta-notebook" style="width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;display:block">
+      </div>
+      <div data-sframe-txt="1" style="position:absolute;left:clamp(20px,5vw,64px);bottom:clamp(28px,6vh,72px);max-width:70vw;will-change:transform,opacity">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#7A6A57;margin:0 0 12px">03 / 08 — Acolchoado</p>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px,6vw,84px);line-height:1.02;color:#1F1814;margin:0 0 14px">Porta-notebook</h3>
+        <a href="#produtos" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#8B6B3D">Explorar →</a>
+      </div>
+      <p style="position:absolute;right:clamp(20px,5vw,64px);bottom:clamp(28px,6vh,72px);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#7A6A57;margin:0">Baunilha Bag — atelier</p>
+    </div>
+    <div data-sframe="1" style="position:absolute;inset:0;display:grid;place-items:center;opacity:0;will-change:transform,opacity">
+      <div data-sframe-img="1" style="width:min(62vh,76vw);aspect-ratio:1;overflow:hidden;will-change:transform">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223556_a118a5d4-f229-42b2-8db4-0aa7b54566d3.png" alt="Organizadores" style="width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;display:block">
+      </div>
+      <div data-sframe-txt="1" style="position:absolute;left:clamp(20px,5vw,64px);bottom:clamp(28px,6vh,72px);max-width:70vw;will-change:transform,opacity">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#7A6A57;margin:0 0 12px">04 / 08 — Casa &amp; estúdio</p>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px,6vw,84px);line-height:1.02;color:#1F1814;margin:0 0 14px">Organizadores</h3>
+        <a href="#produtos" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#8B6B3D">Explorar →</a>
+      </div>
+      <p style="position:absolute;right:clamp(20px,5vw,64px);bottom:clamp(28px,6vh,72px);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#7A6A57;margin:0">Baunilha Bag — atelier</p>
+    </div>
+    <div data-sframe="1" style="position:absolute;inset:0;display:grid;place-items:center;opacity:0;will-change:transform,opacity">
+      <div data-sframe-img="1" style="width:min(62vh,76vw);aspect-ratio:1;overflow:hidden;will-change:transform">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223556_87ebdd80-6d1d-4df0-94b5-5d9cef2ceb00.png" alt="Peças masculinas" style="width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;display:block">
+      </div>
+      <div data-sframe-txt="1" style="position:absolute;left:clamp(20px,5vw,64px);bottom:clamp(28px,6vh,72px);max-width:70vw;will-change:transform,opacity">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#7A6A57;margin:0 0 12px">05 / 08 — Sóbrias &amp; funcionais</p>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px,6vw,84px);line-height:1.02;color:#1F1814;margin:0 0 14px">Peças masculinas</h3>
+        <a href="#produtos" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#8B6B3D">Explorar →</a>
+      </div>
+      <p style="position:absolute;right:clamp(20px,5vw,64px);bottom:clamp(28px,6vh,72px);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#7A6A57;margin:0">Baunilha Bag — atelier</p>
+    </div>
+    <div data-sframe="1" style="position:absolute;inset:0;display:grid;place-items:center;opacity:0;will-change:transform,opacity">
+      <div data-sframe-img="1" style="width:min(62vh,76vw);aspect-ratio:1;overflow:hidden;will-change:transform">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223556_70daeaf3-ed61-40b4-b7d1-3bb57630b4e9.png" alt="Ajustes & reparos" style="width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;display:block">
+      </div>
+      <div data-sframe-txt="1" style="position:absolute;left:clamp(20px,5vw,64px);bottom:clamp(28px,6vh,72px);max-width:70vw;will-change:transform,opacity">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#7A6A57;margin:0 0 12px">06 / 08 — Roupas &amp; bolsas</p>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px,6vw,84px);line-height:1.02;color:#1F1814;margin:0 0 14px">Ajustes &amp; reparos</h3>
+        <a href="#ajustes" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#8B6B3D">Explorar →</a>
+      </div>
+      <p style="position:absolute;right:clamp(20px,5vw,64px);bottom:clamp(28px,6vh,72px);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#7A6A57;margin:0">Baunilha Bag — atelier</p>
+    </div>
+    <div data-sframe="1" style="position:absolute;inset:0;display:grid;place-items:center;opacity:0;will-change:transform,opacity">
+      <div data-sframe-img="1" style="width:min(62vh,76vw);aspect-ratio:1;overflow:hidden;will-change:transform">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223431_0375379d-e612-4907-b862-e53d99c00e10.png" alt="Projetos sob medida" style="width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;display:block">
+      </div>
+      <div data-sframe-txt="1" style="position:absolute;left:clamp(20px,5vw,64px);bottom:clamp(28px,6vh,72px);max-width:70vw;will-change:transform,opacity">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#7A6A57;margin:0 0 12px">07 / 08 — Do seu jeito</p>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px,6vw,84px);line-height:1.02;color:#1F1814;margin:0 0 14px">Projetos sob medida</h3>
+        <a href="#personalizacao" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#8B6B3D">Explorar →</a>
+      </div>
+      <p style="position:absolute;right:clamp(20px,5vw,64px);bottom:clamp(28px,6vh,72px);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#7A6A57;margin:0">Baunilha Bag — atelier</p>
+    </div>
+    <div data-sframe="1" style="position:absolute;inset:0;display:grid;place-items:center;opacity:0;will-change:transform,opacity">
+      <div data-sframe-img="1" style="width:min(62vh,76vw);aspect-ratio:1;overflow:hidden;will-change:transform">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223431_32cf32c5-4052-40b7-873c-6875e12bcda4.png" alt="Edições especiais" style="width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;display:block">
+      </div>
+      <div data-sframe-txt="1" style="position:absolute;left:clamp(20px,5vw,64px);bottom:clamp(28px,6vh,72px);max-width:70vw;will-change:transform,opacity">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#7A6A57;margin:0 0 12px">08 / 08 — Séries pequenas</p>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px,6vw,84px);line-height:1.02;color:#1F1814;margin:0 0 14px">Edições especiais</h3>
+        <a href="#personalizacao" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#8B6B3D">Explorar →</a>
+      </div>
+      <p style="position:absolute;right:clamp(20px,5vw,64px);bottom:clamp(28px,6vh,72px);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#7A6A57;margin:0">Baunilha Bag — atelier</p>
+    </div>
+  </div>
+</section>
+
+<section data-floatsec="1" data-screen-label="Ferramentas" style="position:relative;background:#F5EFE3;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:clamp(80px,12vh,150px) clamp(20px,5vw,64px)">
+  <div data-float-obj="1" style="position:absolute;top:10%;left:6%;width:clamp(90px,11vw,150px);aspect-ratio:1;will-change:transform">
+    <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223556_32aa69d7-3e21-4725-9ade-043531abdddd.png" alt="" aria-hidden="true" style="width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;-webkit-mask-image:radial-gradient(circle at 50% 50%,#000 50%,transparent 70%);mask-image:radial-gradient(circle at 50% 50%,#000 50%,transparent 70%);animation:bbFloat 7s ease-in-out infinite alternate">
+  </div>
+  <div data-float-obj="1" style="position:absolute;top:16%;right:8%;width:clamp(80px,9vw,120px);aspect-ratio:1;will-change:transform">
+    <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223556_bdeb7a66-bc25-4f7a-a961-503c1e20e91f.png" alt="" aria-hidden="true" style="width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;-webkit-mask-image:radial-gradient(circle at 50% 50%,#000 50%,transparent 70%);mask-image:radial-gradient(circle at 50% 50%,#000 50%,transparent 70%);animation:bbFloatB 9s ease-in-out infinite alternate">
+  </div>
+  <div data-float-obj="1" style="position:absolute;bottom:14%;left:10%;width:clamp(90px,11vw,150px);aspect-ratio:1;will-change:transform">
+    <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223556_d80d2274-1f69-4899-b7b9-2f532946f255.png" alt="" aria-hidden="true" style="width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;-webkit-mask-image:radial-gradient(circle at 50% 50%,#000 50%,transparent 70%);mask-image:radial-gradient(circle at 50% 50%,#000 50%,transparent 70%);animation:bbFloat 8s ease-in-out infinite alternate">
+  </div>
+  <div data-float-obj="1" style="position:absolute;bottom:18%;right:9%;width:clamp(80px,10vw,130px);aspect-ratio:1;will-change:transform">
+    <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223556_70daeaf3-ed61-40b4-b7d1-3bb57630b4e9.png" alt="" aria-hidden="true" style="width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;-webkit-mask-image:radial-gradient(circle at 50% 50%,#000 50%,transparent 70%);mask-image:radial-gradient(circle at 50% 50%,#000 50%,transparent 70%);animation:bbFloatB 10s ease-in-out infinite alternate">
+  </div>
+  <div data-float-obj="1" style="position:absolute;top:52%;right:2%;width:clamp(110px,13vw,180px);aspect-ratio:1;will-change:transform">
+    <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223556_f77af796-8340-4937-83bd-3ca32c424c32.png" alt="" aria-hidden="true" style="width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;-webkit-mask-image:radial-gradient(circle at 50% 50%,#000 50%,transparent 70%);mask-image:radial-gradient(circle at 50% 50%,#000 50%,transparent 70%);animation:bbFloat 6s ease-in-out infinite alternate">
+  </div>
+  <div data-float-obj="1" style="position:absolute;top:44%;left:2%;width:clamp(90px,10vw,140px);aspect-ratio:1;will-change:transform">
+    <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223556_f77af796-8340-4937-83bd-3ca32c424c32.png" alt="" aria-hidden="true" style="width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;-webkit-mask-image:radial-gradient(circle at 50% 50%,#000 50%,transparent 70%);mask-image:radial-gradient(circle at 50% 50%,#000 50%,transparent 70%);animation:bbFloat 9s ease-in-out infinite alternate">
+  </div>
+  <div style="position:relative;z-index:2;text-align:center;max-width:720px">
+    <p style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:#7A6A57;margin:0 0 26px">03 / Ferramentas</p>
+    <h2 data-lines="1" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(36px,5.4vw,76px);line-height:1.08;margin:0">
+      <span style="display:block;overflow:hidden"><span data-line="1" style="display:block">Tudo começa com algumas ferramentas</span></span>
+      <span style="display:block;overflow:hidden"><span data-line="1" style="display:block">e uma <em style="font-style:italic;color:#8B6B3D">boa ideia</em>.</span></span>
+    </h2>
+  </div>
+</section>
+
+<section id="processo" data-screen-label="Processo" style="background:#FBF8F1;padding:clamp(80px,12vh,150px) clamp(20px,5vw,64px)">
+  <div style="max-width:1360px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(40px,6vw,110px)">
+    <div>
+      <div style="position:sticky;top:18vh">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:#7A6A57;margin:0 0 26px">04 / Processo</p>
+        <h2 data-lines="1" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px,5vw,72px);line-height:1.06;margin:0 0 34px">
+          <span style="display:block;overflow:hidden"><span data-line="1" style="display:block">Da ideia à</span></span>
+          <span style="display:block;overflow:hidden"><span data-line="1" style="display:block"><em style="font-style:italic;color:#8B6B3D">última linha</em>.</span></span>
+        </h2>
+        <div data-imgreveal="1" style="aspect-ratio:4/3;overflow:hidden;max-width:440px">
+          <img data-parallax="1" src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223431_7319db35-7f79-4173-b08f-b0c0233865d3.png" alt="Costura reta em linha caramelo atravessando tecido cru" style="width:100%;height:112%;object-fit:cover;display:block;will-change:transform">
+        </div>
+      </div>
+    </div>
+    <div style="position:relative;padding-left:clamp(24px,3vw,44px)">
+      <div aria-hidden="true" style="position:absolute;left:0;top:8px;bottom:8px;border-left:1.5px dashed rgba(31,24,20,.18)"></div>
+      <div data-progress="1" aria-hidden="true" style="position:absolute;left:-1px;top:8px;width:1.5px;height:100%;background:#8B6B3D;transform-origin:top;transform:scaleY(0)"></div>
+      <div style="display:flex;flex-direction:column;gap:clamp(44px,7vh,80px)">
+        <div data-step="1" style="opacity:.35;transition:opacity .5s">
+          <p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#8B6B3D;margin:0 0 10px">Etapa 01 — Ideia</p>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(24px,2.6vw,34px);font-weight:500;line-height:1.3;margin:0">“Você conta o que precisa. A gente começa a imaginar.”</p>
+        </div>
+        <div data-step="1" style="opacity:.35;transition:opacity .5s">
+          <p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#8B6B3D;margin:0 0 10px">Etapa 02 — Material</p>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(24px,2.6vw,34px);font-weight:500;line-height:1.3;margin:0">“Tecidos, cores, estruturas e detalhes são escolhidos para cada projeto.”</p>
+        </div>
+        <div data-step="1" style="opacity:.35;transition:opacity .5s">
+          <p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#8B6B3D;margin:0 0 10px">Etapa 03 — Corte</p>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(24px,2.6vw,34px);font-weight:500;line-height:1.3;margin:0">“O tecido começa a ganhar forma.”</p>
+        </div>
+        <div data-step="1" style="opacity:.35;transition:opacity .5s">
+          <p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#8B6B3D;margin:0 0 10px">Etapa 04 — Costura</p>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(24px,2.6vw,34px);font-weight:500;line-height:1.3;margin:0">“Cada parte encontra seu lugar.”</p>
+        </div>
+        <div data-step="1" style="opacity:.35;transition:opacity .5s">
+          <p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#8B6B3D;margin:0 0 10px">Etapa 05 — Acabamento</p>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(24px,2.6vw,34px);font-weight:500;line-height:1.3;margin:0">“Detalhes que fazem uma peça artesanal parecer simples — mesmo quando não é.”</p>
+        </div>
+        <div data-step="1" style="opacity:.35;transition:opacity .5s">
+          <p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#8B6B3D;margin:0 0 10px">Etapa 06 — Pronto</p>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(24px,2.6vw,34px);font-weight:500;line-height:1.3;margin:0">“Uma peça criada especialmente para acompanhar você.”</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="produtos" data-screen-label="Produtos" style="background:#F7F2E6;border-top:1px solid rgba(31,24,20,.06);padding:clamp(80px,12vh,150px) clamp(20px,5vw,64px)">
+  <div style="max-width:1360px;margin:0 auto">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:clamp(40px,6vh,70px)">
+      <div>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:#7A6A57;margin:0 0 26px">Shop / Peças disponíveis</p>
+        <h2 data-lines="1" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(34px,4.6vw,66px);line-height:1.08;margin:0">
+          <span style="display:block;overflow:hidden"><span data-line="1" style="display:block">Feitos à mão.</span></span>
+          <span style="display:block;overflow:hidden"><span data-line="1" style="display:block">Prontos para encontrar <em style="font-style:italic;color:#8B6B3D">alguém</em>.</span></span>
+        </h2>
+      </div>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#7A6A57;margin:0">Peças ilustrativas — loja em breve</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:clamp(24px,3vw,44px)">
+      <article data-prodcard="1" style="display:flex;flex-direction:column;gap:14px">
+        <a href="{{ storeUrl }}" aria-label="Ver Nécessaire Siena na loja" style="position:relative;display:block;aspect-ratio:3/4;overflow:hidden;background:#EDE4D0">
+          <img data-prodfront="1" src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223431_b39706f1-b0d2-48f4-9bd3-1833fcae665f.png" alt="Nécessaire Siena em lona cream com zíper caramelo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.8,.2,1)">
+          <img data-prodback="1" src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223431_32cf32c5-4052-40b7-873c-6875e12bcda4.png" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s">
+        </a>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <p style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#7A6A57;margin:0">Acessórios / 01</p>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;margin:0">Nécessaire Siena</h3>
+          <p style="font-size:14px;font-weight:600;color:#3A2F26;margin:0">R$ 89</p>
+        </div>
+        <div style="display:flex;gap:10px">
+          <a href="{{ storeUrl }}" style="flex:1;text-align:center;font-size:10px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;color:#1F1814;border:1px solid #1F1814;padding:12px 8px;transition:background .3s,color .3s" style-hover="background:#1F1814;color:#F5EFE3">Ver peça</a>
+          <a href="{{ storeUrl }}" style="flex:1;text-align:center;font-size:10px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;background:#1F1814;color:#F5EFE3;border:1px solid #1F1814;padding:12px 8px;transition:background .3s" style-hover="background:#3A2F26;color:#F5EFE3">Comprar</a>
+        </div>
+      </article>
+      <article data-prodcard="1" style="display:flex;flex-direction:column;gap:14px">
+        <a href="{{ storeUrl }}" aria-label="Ver Bolsa Aurora na loja" style="position:relative;display:block;aspect-ratio:3/4;overflow:hidden;background:#EDE4D0">
+          <img data-prodfront="1" src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223431_3f8ff39e-cde1-45ca-a9bb-d8d087d99bb8.png" alt="Bolsa Aurora estruturada em lona marfim com alças cacau" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.8,.2,1)">
+          <img data-prodback="1" src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223431_0375379d-e612-4907-b862-e53d99c00e10.png" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s">
+        </a>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <p style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#7A6A57;margin:0">Bolsas / 02</p>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;margin:0">Bolsa Aurora</h3>
+          <p style="font-size:14px;font-weight:600;color:#3A2F26;margin:0">R$ 189</p>
+        </div>
+        <div style="display:flex;gap:10px">
+          <a href="{{ storeUrl }}" style="flex:1;text-align:center;font-size:10px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;color:#1F1814;border:1px solid #1F1814;padding:12px 8px;transition:background .3s,color .3s" style-hover="background:#1F1814;color:#F5EFE3">Ver peça</a>
+          <a href="{{ storeUrl }}" style="flex:1;text-align:center;font-size:10px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;background:#1F1814;color:#F5EFE3;border:1px solid #1F1814;padding:12px 8px;transition:background .3s" style-hover="background:#3A2F26;color:#F5EFE3">Comprar</a>
+        </div>
+      </article>
+      <article data-prodcard="1" style="display:flex;flex-direction:column;gap:14px">
+        <a href="{{ storeUrl }}" aria-label="Ver Porta-notebook Verona na loja" style="position:relative;display:block;aspect-ratio:3/4;overflow:hidden;background:#EDE4D0">
+          <img data-prodfront="1" src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223431_d5318982-bf41-4028-8011-5fbe1250837e.png" alt="Porta-notebook Verona acolchoado em matelassê cream" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.8,.2,1)">
+          <img data-prodback="1" src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223431_7319db35-7f79-4173-b08f-b0c0233865d3.png" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s">
+        </a>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <p style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#7A6A57;margin:0">Trabalho / 03</p>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;margin:0">Porta-notebook Verona</h3>
+          <p style="font-size:14px;font-weight:600;color:#3A2F26;margin:0">R$ 149</p>
+        </div>
+        <div style="display:flex;gap:10px">
+          <a href="{{ storeUrl }}" style="flex:1;text-align:center;font-size:10px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;color:#1F1814;border:1px solid #1F1814;padding:12px 8px;transition:background .3s,color .3s" style-hover="background:#1F1814;color:#F5EFE3">Ver peça</a>
+          <a href="{{ storeUrl }}" style="flex:1;text-align:center;font-size:10px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;background:#1F1814;color:#F5EFE3;border:1px solid #1F1814;padding:12px 8px;transition:background .3s" style-hover="background:#3A2F26;color:#F5EFE3">Comprar</a>
+        </div>
+      </article>
+      <article data-prodcard="1" style="display:flex;flex-direction:column;gap:14px">
+        <a href="{{ storeUrl }}" aria-label="Ver Nécessaire Cedro na loja" style="position:relative;display:block;aspect-ratio:3/4;overflow:hidden;background:#EDE4D0">
+          <img data-prodfront="1" src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223556_87ebdd80-6d1d-4df0-94b5-5d9cef2ceb00.png" alt="Nécessaire Cedro masculina em lona encerada cacau" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.8,.2,1)">
+          <img data-prodback="1" src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223431_32cf32c5-4052-40b7-873c-6875e12bcda4.png" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s">
+        </a>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <p style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#7A6A57;margin:0">Masculino / 04</p>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;margin:0">Nécessaire Cedro</h3>
+          <p style="font-size:14px;font-weight:600;color:#3A2F26;margin:0">R$ 119</p>
+        </div>
+        <div style="display:flex;gap:10px">
+          <a href="{{ storeUrl }}" style="flex:1;text-align:center;font-size:10px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;color:#1F1814;border:1px solid #1F1814;padding:12px 8px;transition:background .3s,color .3s" style-hover="background:#1F1814;color:#F5EFE3">Ver peça</a>
+          <a href="{{ storeUrl }}" style="flex:1;text-align:center;font-size:10px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;background:#1F1814;color:#F5EFE3;border:1px solid #1F1814;padding:12px 8px;transition:background .3s" style-hover="background:#3A2F26;color:#F5EFE3">Comprar</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="personalizacao" data-screen-label="Personalização" style="background:#1F1814;color:#F5EFE3;padding:clamp(90px,14vh,170px) clamp(20px,5vw,64px)">
+  <div style="max-width:1100px;margin:0 auto;text-align:center">
+    <p style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:rgba(245,239,227,.55);margin:0 0 30px">05 / Sob medida</p>
+    <h2 data-lines="1" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(40px,6vw,88px);line-height:1.06;margin:0 0 30px;color:#F5EFE3">
+      <span style="display:block;overflow:hidden"><span data-line="1" style="display:block">Não encontrou o que imaginou?</span></span>
+      <span style="display:block;overflow:hidden"><span data-line="1" style="display:block"><em style="font-style:italic;color:#E3D7BD">Melhor ainda.</em></span></span>
+    </h2>
+    <p data-reveal="1" style="font-family:'Cormorant Garamond',serif;font-size:clamp(22px,2.4vw,30px);font-weight:500;margin:0 0 14px;color:#F5EFE3">Conte sua ideia para a Valéria.</p>
+    <p data-reveal="1" style="font-weight:300;font-size:clamp(14px,1.4vw,17px);line-height:1.75;color:rgba(245,239,227,.75);max-width:58ch;margin:0 auto 44px">Podemos adaptar medidas, tecidos, cores, divisórias, alças, formatos e detalhes para criar algo especialmente para você.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:clamp(12px,1.6vw,22px);max-width:760px;margin:0 auto 16px">
+      <figure style="margin:0">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223431_b39706f1-b0d2-48f4-9bd3-1833fcae665f.png" alt="Nécessaire sob medida em lona cream" style="width:100%;aspect-ratio:1;object-fit:cover;display:block;border:1px solid rgba(245,239,227,.14)">
+        <figcaption style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.6px;text-transform:uppercase;color:rgba(245,239,227,.5);padding-top:10px">Medidas do seu jeito</figcaption>
+      </figure>
+      <figure style="margin:0">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223431_32cf32c5-4052-40b7-873c-6875e12bcda4.png" alt="Forro e divisórias internas escolhidos para cada projeto" style="width:100%;aspect-ratio:1;object-fit:cover;display:block;border:1px solid rgba(245,239,227,.14)">
+        <figcaption style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.6px;text-transform:uppercase;color:rgba(245,239,227,.5);padding-top:10px">Forro &amp; divisórias</figcaption>
+      </figure>
+      <figure style="margin:0">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223431_0375379d-e612-4907-b862-e53d99c00e10.png" alt="Tecidos e cores escolhidos com você" style="width:100%;aspect-ratio:1;object-fit:cover;display:block;border:1px solid rgba(245,239,227,.14)">
+        <figcaption style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.6px;text-transform:uppercase;color:rgba(245,239,227,.5);padding-top:10px">Tecidos &amp; cores</figcaption>
+      </figure>
+    </div>
+    <p style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:rgba(245,239,227,.5);margin:0 0 40px">Escolha um ponto de partida — a mensagem já chega pronta no WhatsApp</p>
+    <div role="group" aria-label="Escolha o tipo de pedido" style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:0 0 44px">
+      <button data-idea="1" data-idx="0" onClick="{{ pickIdea }}" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;background:transparent;color:#F5EFE3;border:1px solid rgba(245,239,227,.35);padding:13px 18px;cursor:pointer;transition:background .3s,color .3s,border-color .3s">Quero um porta-notebook</button>
+      <button data-idea="1" data-idx="1" onClick="{{ pickIdea }}" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;background:transparent;color:#F5EFE3;border:1px solid rgba(245,239,227,.35);padding:13px 18px;cursor:pointer;transition:background .3s,color .3s,border-color .3s">Quero uma bolsa</button>
+      <button data-idea="1" data-idx="2" onClick="{{ pickIdea }}" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;background:transparent;color:#F5EFE3;border:1px solid rgba(245,239,227,.35);padding:13px 18px;cursor:pointer;transition:background .3s,color .3s,border-color .3s">Quero uma nécessaire</button>
+      <button data-idea="1" data-idx="3" onClick="{{ pickIdea }}" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;background:transparent;color:#F5EFE3;border:1px solid rgba(245,239,227,.35);padding:13px 18px;cursor:pointer;transition:background .3s,color .3s,border-color .3s">Quero adaptar uma peça</button>
+      <button data-idea="1" data-idx="4" onClick="{{ pickIdea }}" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;background:transparent;color:#F5EFE3;border:1px solid rgba(245,239,227,.35);padding:13px 18px;cursor:pointer;transition:background .3s,color .3s,border-color .3s">Preciso de um ajuste</button>
+      <button data-idea="1" data-idx="5" onClick="{{ pickIdea }}" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;background:transparent;color:#F5EFE3;border:1px solid rgba(245,239,227,.35);padding:13px 18px;cursor:pointer;transition:background .3s,color .3s,border-color .3s">Tenho outra ideia</button>
+    </div>
+    <a data-idea-cta="1" data-magnetic="1" href="{{ waMain }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:12px;background:#F5EFE3;color:#1F1814;font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:22px 44px;border:1px solid #F5EFE3;transition:background .35s,color .35s" style-hover="background:#E3D7BD;color:#1F1814">Conversar com a Valéria</a>
+  </div>
+</section>
+
+<section id="ajustes" data-screen-label="Ajustes e reparos" style="background:#FBF8F1;padding:clamp(80px,12vh,150px) clamp(20px,5vw,64px)">
+  <div style="max-width:1360px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:clamp(40px,6vw,100px);align-items:start">
+    <div>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:#7A6A57;margin:0 0 26px">06 / Ajustes &amp; reparos</p>
+      <h2 data-lines="1" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(34px,4.4vw,62px);line-height:1.1;margin:0 0 28px">
+        <span style="display:block;overflow:hidden"><span data-line="1" style="display:block">Às vezes você não precisa de algo novo.</span></span>
+        <span style="display:block;overflow:hidden"><span data-line="1" style="display:block">Só precisa <em style="font-style:italic;color:#8B6B3D">cuidar melhor</em> do que já tem.</span></span>
+      </h2>
+      <p data-reveal="1" style="font-weight:300;font-size:clamp(15px,1.4vw,18px);line-height:1.75;color:#3A2F26;max-width:48ch;margin:0 0 30px">Aquela bolsa com a alça gasta, o zíper que travou, a calça que só precisa de uma barra: traga para o atelier. A Valéria avalia a peça e devolve com a mesma costura cuidadosa das peças novas.</p>
+      <a data-magnetic="1" href="{{ waAvaliacao }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:transparent;color:#1F1814;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:18px 32px;border:1px solid #1F1814;transition:background .35s,color .35s" style-hover="background:#1F1814;color:#F5EFE3">Pedir uma avaliação</a>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#7A6A57;margin:18px 0 34px">Orçamento pelo WhatsApp, após avaliação da peça</p>
+      <div style="display:flex;gap:clamp(12px,1.6vw,20px);max-width:460px">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223431_a596cacc-a045-4686-8603-e2e250931e01.png" alt="Troca de zíper com ferragem de latão" style="flex:1;min-width:0;aspect-ratio:1;object-fit:cover;display:block">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223431_7319db35-7f79-4173-b08f-b0c0233865d3.png" alt="Reforço de costura em ponto reto" style="flex:1;min-width:0;aspect-ratio:1;object-fit:cover;display:block">
+      </div>
+    </div>
+    <ul style="list-style:none;margin:0;padding:0;border-top:1px solid rgba(31,24,20,.12)">
+      <li data-reveal="1" style="display:flex;justify-content:space-between;gap:16px;padding:18px 4px;border-bottom:1px solid rgba(31,24,20,.12);font-weight:300;font-size:clamp(15px,1.4vw,18px)">Ajustes em roupas<span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;color:#7A6A57;align-self:center">01</span></li>
+      <li data-reveal="1" style="display:flex;justify-content:space-between;gap:16px;padding:18px 4px;border-bottom:1px solid rgba(31,24,20,.12);font-weight:300;font-size:clamp(15px,1.4vw,18px)">Pequenos reparos<span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;color:#7A6A57;align-self:center">02</span></li>
+      <li data-reveal="1" style="display:flex;justify-content:space-between;gap:16px;padding:18px 4px;border-bottom:1px solid rgba(31,24,20,.12);font-weight:300;font-size:clamp(15px,1.4vw,18px)">Reforço de costura<span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;color:#7A6A57;align-self:center">03</span></li>
+      <li data-reveal="1" style="display:flex;justify-content:space-between;gap:16px;padding:18px 4px;border-bottom:1px solid rgba(31,24,20,.12);font-weight:300;font-size:clamp(15px,1.4vw,18px)">Troca de zíper<span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;color:#7A6A57;align-self:center">04</span></li>
+      <li data-reveal="1" style="display:flex;justify-content:space-between;gap:16px;padding:18px 4px;border-bottom:1px solid rgba(31,24,20,.12);font-weight:300;font-size:clamp(15px,1.4vw,18px)">Reparos em produtos de tecido<span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;color:#7A6A57;align-self:center">05</span></li>
+      <li data-reveal="1" style="display:flex;justify-content:space-between;gap:16px;padding:18px 4px;border-bottom:1px solid rgba(31,24,20,.12);font-weight:300;font-size:clamp(15px,1.4vw,18px)">Adaptações<span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;color:#7A6A57;align-self:center">06</span></li>
+      <li data-reveal="1" style="display:flex;justify-content:space-between;gap:16px;padding:18px 4px;border-bottom:1px solid rgba(31,24,20,.12);font-weight:300;font-size:clamp(15px,1.4vw,18px)">Reformas simples de peças<span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;color:#7A6A57;align-self:center">07</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="detalhes" data-hsec="1" data-screen-label="Detalhes" style="background:#F5EFE3;border-top:1px solid rgba(31,24,20,.06);overflow:hidden">
+  <div style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:clamp(60px,8vh,100px) 0">
+    <div style="padding:0 clamp(20px,5vw,64px);margin-bottom:clamp(36px,5vh,60px)">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:#7A6A57;margin:0 0 26px">07 / Detalhes</p>
+      <h2 data-lines="1" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(34px,4.6vw,66px);line-height:1.08;margin:0;max-width:16ch">
+        <span style="display:block;overflow:hidden"><span data-line="1" style="display:block">A qualidade mora onde</span></span>
+        <span style="display:block;overflow:hidden"><span data-line="1" style="display:block">quase <em style="font-style:italic;color:#8B6B3D">ninguém olha</em>.</span></span>
+      </h2>
+    </div>
+    <div data-htrack="1" style="display:flex;gap:clamp(16px,2vw,32px);padding:0 clamp(20px,5vw,64px);will-change:transform">
+      <figure style="margin:0;flex:0 0 auto;width:clamp(260px,38vw,520px)">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223431_7319db35-7f79-4173-b08f-b0c0233865d3.png" alt="Macro da costura reta em linha caramelo" style="width:100%;aspect-ratio:1;object-fit:cover;display:block">
+        <figcaption style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#7A6A57;padding-top:12px">Costura / ponto reto</figcaption>
+      </figure>
+      <figure style="margin:0;flex:0 0 auto;width:clamp(260px,38vw,520px)">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223431_a596cacc-a045-4686-8603-e2e250931e01.png" alt="Macro do zíper de latão sobre matelassê marfim" style="width:100%;aspect-ratio:1;object-fit:cover;display:block">
+        <figcaption style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#7A6A57;padding-top:12px">Zíper / ferragem</figcaption>
+      </figure>
+      <figure style="margin:0;flex:0 0 auto;width:clamp(260px,38vw,520px)">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223431_32cf32c5-4052-40b7-873c-6875e12bcda4.png" alt="Macro do forro listrado e etiqueta costurada" style="width:100%;aspect-ratio:1;object-fit:cover;display:block">
+        <figcaption style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#7A6A57;padding-top:12px">Forro / etiqueta</figcaption>
+      </figure>
+      <figure style="margin:0;flex:0 0 auto;width:clamp(260px,38vw,520px)">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223431_0375379d-e612-4907-b862-e53d99c00e10.png" alt="Macro da textura do linho natural" style="width:100%;aspect-ratio:1;object-fit:cover;display:block">
+        <figcaption style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#7A6A57;padding-top:12px">Tecido / textura</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="sobre" data-screen-label="Sobre Valéria" style="background:#FBF8F1;padding:clamp(80px,12vh,150px) clamp(20px,5vw,64px)">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(40px,6vw,100px);align-items:center">
+    <div data-imgreveal="1" style="aspect-ratio:3/4;overflow:hidden;max-width:480px;width:100%;justify-self:center">
+      <img data-parallax="1" src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223556_3a9868c2-f84f-4b8c-8b2f-0b14ee0db2f2.png" alt="Valéria examinando um tecido marfim no atelier" style="width:100%;height:112%;object-fit:cover;display:block;will-change:transform">
+    </div>
+    <div>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:#7A6A57;margin:0 0 26px">08 / Sobre</p>
+      <h2 data-lines="1" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(34px,4.6vw,66px);line-height:1.08;margin:0 0 30px">
+        <span style="display:block;overflow:hidden"><span data-line="1" style="display:block">Por trás de cada peça,</span></span>
+        <span style="display:block;overflow:hidden"><span data-line="1" style="display:block">existem <em style="font-style:italic;color:#8B6B3D">duas mãos</em>.</span></span>
+      </h2>
+      <p data-reveal="1" style="font-weight:300;font-size:clamp(15px,1.4vw,18px);line-height:1.75;color:#3A2F26;max-width:48ch;margin:0 0 18px">Baunilha Bag é o atelier da Valéria.</p>
+      <p data-reveal="1" style="font-weight:300;font-size:clamp(15px,1.4vw,18px);line-height:1.75;color:#3A2F26;max-width:48ch;margin:0 0 18px">Um espaço onde tecido, experiência e cuidado se transformam em peças feitas para acompanhar pessoas de verdade.</p>
+      <p data-reveal="1" style="font-weight:400;font-size:clamp(15px,1.4vw,18px);line-height:1.75;color:#1F1814;max-width:48ch;margin:0">Cada projeto passa pelas mãos dela — do primeiro corte ao último acabamento.</p>
+    </div>
+  </div>
+</section>
+
+<section id="avaliacoes" data-screen-label="Avaliações" style="background:#F7F2E6;border-top:1px solid rgba(31,24,20,.06);padding:clamp(80px,12vh,150px) clamp(20px,5vw,64px)">
+  <div style="max-width:1360px;margin:0 auto">
+    <p style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:#7A6A57;margin:0 0 26px">09 / Quem recebeu</p>
+    <h2 data-lines="1" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(34px,4.6vw,66px);line-height:1.08;margin:0 0 clamp(36px,5vh,60px)">
+      <span style="display:block;overflow:hidden"><span data-line="1" style="display:block">Feito para alguém.</span></span>
+      <span style="display:block;overflow:hidden"><span data-line="1" style="display:block">Contado por quem <em style="font-style:italic;color:#8B6B3D">recebeu</em>.</span></span>
+    </h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:clamp(20px,2.5vw,36px)">
+      <div data-reveal="1" style="border:1px dashed rgba(31,24,20,.25);padding:28px;display:flex;flex-direction:column;gap:14px;min-height:180px">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#7A6A57;margin:0">Nome — Produto — Cidade</p>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;color:#7A6A57;margin:0;line-height:1.4">A primeira história contada por um cliente vai morar aqui.</p>
+      </div>
+      <div data-reveal="1" style="border:1px dashed rgba(31,24,20,.25);padding:28px;display:flex;flex-direction:column;gap:14px;min-height:180px">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#7A6A57;margin:0">Nome — Produto — Cidade</p>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;color:#7A6A57;margin:0;line-height:1.4">Recebeu uma peça da Baunilha Bag? Conte para a gente.</p>
+      </div>
+      <div data-reveal="1" style="border:1px dashed rgba(31,24,20,.25);padding:28px;display:flex;flex-direction:column;gap:14px;min-height:180px">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#7A6A57;margin:0">Nome — Produto — Cidade</p>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;color:#7A6A57;margin:0;line-height:1.4">Avaliações reais, uma peça de cada vez.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="instagram" data-screen-label="Instagram" style="background:#FBF8F1;padding:clamp(80px,12vh,150px) clamp(20px,5vw,64px)">
+  <div style="max-width:1360px;margin:0 auto">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:clamp(36px,5vh,60px)">
+      <h2 data-lines="1" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(34px,4.6vw,66px);line-height:1.08;margin:0">
+        <span style="display:block;overflow:hidden"><span data-line="1" style="display:block">Do atelier para o <em style="font-style:italic;color:#8B6B3D">seu feed</em>.</span></span>
+      </h2>
+      <a data-magnetic="1" href="{{ instagramUrl }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:transparent;color:#1F1814;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:16px 28px;border:1px solid #1F1814;transition:background .35s,color .35s" style-hover="background:#1F1814;color:#F5EFE3">Acompanhar no Instagram</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:clamp(10px,1.4vw,20px)">
+      <a href="{{ instagramUrl }}" target="_blank" rel="noopener" aria-label="Bastidores no Instagram" style="display:block;aspect-ratio:1;overflow:hidden;background:#EDE4D0"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223431_7319db35-7f79-4173-b08f-b0c0233865d3.png" alt="Detalhe de costura" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s" style-hover="transform:scale(1.05)"></a>
+      <a href="{{ instagramUrl }}" target="_blank" rel="noopener" aria-label="Bastidores no Instagram" style="display:block;aspect-ratio:1;overflow:hidden;background:#EDE4D0"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223431_c669addc-f918-43f9-93a3-c5af7fa89945.png" alt="Mãos costurando" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s" style-hover="transform:scale(1.05)"></a>
+      <a href="{{ instagramUrl }}" target="_blank" rel="noopener" aria-label="Bastidores no Instagram" style="display:block;aspect-ratio:1;overflow:hidden;background:#EDE4D0"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223556_bdeb7a66-bc25-4f7a-a961-503c1e20e91f.png" alt="Carretel de linha caramelo" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s" style-hover="transform:scale(1.05)"></a>
+      <a href="{{ instagramUrl }}" target="_blank" rel="noopener" aria-label="Bastidores no Instagram" style="display:block;aspect-ratio:1;overflow:hidden;background:#EDE4D0"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223431_0375379d-e612-4907-b862-e53d99c00e10.png" alt="Textura de linho" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s" style-hover="transform:scale(1.05)"></a>
+      <a href="{{ instagramUrl }}" target="_blank" rel="noopener" aria-label="Bastidores no Instagram" style="display:block;aspect-ratio:1;overflow:hidden;background:#EDE4D0"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223431_32cf32c5-4052-40b7-873c-6875e12bcda4.png" alt="Forro e etiqueta" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s" style-hover="transform:scale(1.05)"></a>
+      <a href="{{ instagramUrl }}" target="_blank" rel="noopener" aria-label="Bastidores no Instagram" style="display:block;aspect-ratio:1;overflow:hidden;background:#EDE4D0"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FxzjbSba3Wuvor4uZ2g1xBxVxi/hf_20260831_223556_a118a5d4-f229-42b2-8db4-0aa7b54566d3.png" alt="Organizadores em tecido" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s" style-hover="transform:scale(1.05)"></a>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="CTA final" style="background:#F7F2E6;border-top:1px solid rgba(31,24,20,.06);padding:clamp(110px,18vh,220px) clamp(20px,5vw,64px);text-align:center">
+  <h2 data-lines="1" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(48px,9vw,140px);line-height:1.02;margin:0 0 34px">
+    <span style="display:block;overflow:hidden"><span data-line="1" style="display:block">Tem uma ideia?</span></span>
+    <span style="display:block;overflow:hidden"><span data-line="1" style="display:block">Vamos colocar no <em style="font-style:italic;color:#8B6B3D">tecido</em>.</span></span>
+  </h2>
+  <p data-reveal="1" style="font-weight:300;font-size:clamp(15px,1.5vw,19px);line-height:1.7;color:#3A2F26;max-width:52ch;margin:0 auto 44px">Produtos prontos, peças personalizadas, ajustes ou uma ideia completamente diferente.</p>
+  <div data-reveal="1" style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-bottom:26px">
+    <a data-magnetic="1" href="{{ waMain }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:#1F1814;color:#F5EFE3;font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:22px 40px;border:1px solid #1F1814;transition:background .35s" style-hover="background:#3A2F26;color:#F5EFE3">Conversar com a Valéria</a>
+    <a data-magnetic="1" href="#produtos" style="display:inline-flex;align-items:center;gap:10px;background:transparent;color:#1F1814;font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:22px 40px;border:1px solid #1F1814;transition:background .35s,color .35s" style-hover="background:#1F1814;color:#F5EFE3">Ver produtos</a>
+  </div>
+  <p style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:#7A6A57;margin:0">Atendimento direto pelo WhatsApp</p>
+</section>
+
+<footer style="background:#FBF8F1;border-top:1px solid rgba(31,24,20,.12);padding:clamp(40px,6vh,64px) clamp(20px,5vw,64px)">
+  <div style="max-width:1360px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px">
+    <a href="#topo" style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:#1F1814">Baunilha Bag</a>
+    <nav aria-label="Rodapé" style="display:flex;flex-wrap:wrap;gap:clamp(14px,2.5vw,28px)">
+      <a href="#produtos" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#3A2F26">Produtos</a>
+      <a href="#personalizacao" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#3A2F26">Sob medida</a>
+      <a href="#ajustes" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#3A2F26">Ajustes</a>
+      <a href="#sobre" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#3A2F26">Sobre</a>
+      <a href="{{ instagramUrl }}" target="_blank" rel="noopener" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#3A2F26">Instagram</a>
+      <a href="{{ waMain }}" target="_blank" rel="noopener" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#3A2F26">WhatsApp</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:20px">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:#8B6B3D">Feito à mão</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;color:#7A6A57">© Baunilha Bag</span>
+    </div>
+  </div>
+</footer>
+
+<a href="{{ waMain }}" target="_blank" rel="noopener" aria-label="Conversar no WhatsApp" style="position:fixed;bottom:22px;right:22px;z-index:70;width:52px;height:52px;border-radius:99px;background:#1F1814;color:#F5EFE3;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(31,24,20,.25);transition:background .3s" style-hover="background:#3A2F26;color:#F5EFE3">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+</a>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;whatsappNumber&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;5511958348764&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contato&quot;},&quot;instagramUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://www.instagram.com/baunilha_bags/&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contato&quot;},&quot;storeUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Loja&quot;}}">
+class Component extends DCLogic {
+  wa(msg) {
+    const n = (this.props.whatsappNumber ?? '5511958348764').replace(/\D/g, '');
+    return 'https://wa.me/' + n + '?text=' + encodeURIComponent(msg);
+  }
+  renderVals() {
+    const store = this.props.storeUrl || '#produtos';
+    return {
+      waMain: this.wa('Olá, Valéria! Vi o site da Baunilha Bag e gostaria de conversar.'),
+      waSobMedida: this.wa('Olá, Valéria! Vi o site da Baunilha Bag e gostaria de pedir uma peça sob medida.'),
+      waAvaliacao: this.wa('Olá, Valéria! Tenho uma peça que precisa de ajuste ou reparo e gostaria de uma avaliação.'),
+      storeUrl: store,
+      instagramUrl: this.props.instagramUrl ?? 'https://www.instagram.com/baunilha_bags/',
+      pickIdea: (e) => this.pickIdea(e)
+    };
+  }
+  pickIdea(e) {
+    const msgs = [
+      'Olá, Valéria! Vi o site da Baunilha Bag e gostaria de conversar sobre um porta-notebook personalizado.',
+      'Olá, Valéria! Vi o site da Baunilha Bag e gostaria de conversar sobre uma bolsa personalizada.',
+      'Olá, Valéria! Vi o site da Baunilha Bag e gostaria de conversar sobre uma nécessaire personalizada.',
+      'Olá, Valéria! Vi o site da Baunilha Bag e gostaria de adaptar uma peça que já tenho.',
+      'Olá, Valéria! Vi o site da Baunilha Bag e preciso de um ajuste em uma peça.',
+      'Olá, Valéria! Vi o site da Baunilha Bag e tenho uma ideia diferente para conversar com você.'
+    ];
+    const btn = e.currentTarget, idx = +btn.dataset.idx;
+    document.querySelectorAll('[data-idea]').forEach(b => {
+      b.style.background = 'transparent'; b.style.color = '#F5EFE3'; b.style.borderColor = 'rgba(245,239,227,.35)';
+      b.setAttribute('aria-pressed', 'false');
+    });
+    btn.style.background = '#F5EFE3'; btn.style.color = '#1F1814'; btn.style.borderColor = '#F5EFE3';
+    btn.setAttribute('aria-pressed', 'true');
+    const cta = document.querySelector('[data-idea-cta]');
+    if (cta) cta.href = this.wa(msgs[idx] || msgs[5]);
+  }
+  componentDidMount() {
+    this._poll = setInterval(() => {
+      if (window.gsap && window.ScrollTrigger && window.Lenis) { clearInterval(this._poll); this.initFX(); }
+    }, 80);
+  }
+  componentWillUnmount() {
+    clearInterval(this._poll);
+    if (this._rafId) cancelAnimationFrame(this._rafId);
+    if (this._lenis) this._lenis.destroy();
+    if (window.ScrollTrigger) window.ScrollTrigger.getAll().forEach(t => t.kill());
+    (this._off || []).forEach(f => f());
+  }
+  initFX() {
+    if (this._inited) return; this._inited = true;
+    const gsap = window.gsap, ST = window.ScrollTrigger;
+    gsap.registerPlugin(ST);
+    this._off = [];
+    const on = (el, ev, fn, opt) => { el.addEventListener(ev, fn, opt); this._off.push(() => el.removeEventListener(ev, fn, opt)); };
+    const q = s => document.querySelector(s), qa = s => Array.from(document.querySelectorAll(s));
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const heroVid = q('[data-hero-media] video');
+    if (heroVid) { heroVid.muted = true; heroVid.volume = 0; heroVid.removeAttribute('controls'); heroVid.play().catch(() => {}); }
+    const canHover = matchMedia('(hover: hover) and (pointer: fine)').matches;
+    // header
+    const header = q('[data-header]');
+    const setHeader = y => {
+      if (!header) return;
+      const onSolid = y > 40;
+      header.style.background = onSolid ? 'rgba(251,248,241,.9)' : 'transparent';
+      header.style.backdropFilter = onSolid ? 'blur(10px)' : 'none';
+      header.style.borderBottomColor = onSolid ? 'rgba(31,24,20,.08)' : 'transparent';
+    };
+    if (!reduced) {
+      const lenis = new window.Lenis({ lerp: 0.09 });
+      this._lenis = lenis;
+      const raf = t => { lenis.raf(t); this._rafId = requestAnimationFrame(raf); };
+      this._rafId = requestAnimationFrame(raf);
+      lenis.on('scroll', e => { ST.update(); setHeader(e.scroll); });
+      qa('a[href^="#"]').forEach(a => on(a, 'click', ev => {
+        const t = q(a.getAttribute('href'));
+        if (t) { ev.preventDefault(); lenis.scrollTo(t, { offset: -60 }); }
+      }));
+    } else { on(window, 'scroll', () => setHeader(window.scrollY)); }
+    if (reduced) { return; }
+    // text line reveals
+    qa('[data-lines]').forEach(h => {
+      gsap.from(h.querySelectorAll('[data-line]'), {
+        yPercent: 110, duration: 1.1, ease: 'power4.out', stagger: 0.12,
+        scrollTrigger: { trigger: h, start: 'top 95%', once: true }
+      });
+    });
+    qa('[data-reveal]').forEach(el => gsap.from(el, { y: 34, opacity: 0, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 95%', once: true } }));
+    // safety: never leave text hidden if a trigger misfires
+    let sweeps = 0;
+    const sweep = setInterval(() => {
+      qa('[data-line], [data-reveal]').forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.top < innerHeight * 0.9 && r.bottom > 0) {
+          const st = getComputedStyle(el);
+          if (st.opacity === '0' || st.transform.includes('matrix')) gsap.to(el, { yPercent: 0, y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' });
+        }
+      });
+      if (++sweeps > 10) clearInterval(sweep);
+    }, 1000);
+    this._off.push(() => clearInterval(sweep));
+    qa('[data-imgreveal]').forEach(el => gsap.fromTo(el, { clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0% 0)', duration: 1.3, ease: 'power4.inOut', scrollTrigger: { trigger: el, start: 'top 85%' } }));
+    qa('[data-parallax]').forEach(el => gsap.fromTo(el, { yPercent: -6 }, { yPercent: 6, ease: 'none', scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } }));
+    // hero
+    gsap.to('[data-hero-media]', { scale: 1.14, ease: 'none', scrollTrigger: { trigger: '[data-hero]', start: 'top top', end: 'bottom top', scrub: true } });
+    gsap.to('[data-hero-content]', { opacity: 0, y: -50, ease: 'none', scrollTrigger: { trigger: '[data-hero]', start: 'top top', end: '45% top', scrub: true } });
+    // stitch line
+    const stitch = q('[data-stitchline]');
+    if (stitch) gsap.to(stitch, { width: '86%', ease: 'none', scrollTrigger: { trigger: stitch, start: 'top 95%', end: 'top 40%', scrub: true } });
+    // scrollytelling: seção 02 pinned + scrub
+    const scrolly = q('[data-scrolly]');
+    if (scrolly) {
+      const sframes = qa('[data-sframe]');
+      const sintro = q('[data-sintro]');
+      const stl = gsap.timeline({ scrollTrigger: { trigger: scrolly, start: 'top top', end: 'bottom bottom', scrub: 0.4, pin: q('[data-spin]'), pinSpacing: false } });
+      if (sintro) stl.to(sintro, { opacity: 0, scale: 0.94, y: -60, duration: 0.8, ease: 'none' }, 0.5);
+      sframes.forEach((f, i) => {
+        const img = f.querySelector('[data-sframe-img]');
+        const txt = f.querySelector('[data-sframe-txt]');
+        const t = 1 + i * 2;
+        stl.fromTo(f, { opacity: 0 }, { opacity: 1, duration: 0.3, ease: 'none' }, t);
+        stl.fromTo(img, { yPercent: 16, scale: 1.14 }, { yPercent: 0, scale: 1, duration: 2, ease: 'none' }, t);
+        stl.fromTo(txt, { y: 44, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'none' }, t + 0.15);
+        if (i < sframes.length - 1) stl.to(f, { opacity: 0, yPercent: -7, scale: 0.965, duration: 0.45, ease: 'none' }, t + 1.55);
+      });
+    }
+    // floating objects repulsion
+    const fsec = q('[data-floatsec]'), objs = qa('[data-float-obj]');
+    if (fsec && objs.length && canHover) {
+      const tos = objs.map(o => ({
+        el: o,
+        x: gsap.quickTo(o, 'x', { duration: 0.9, ease: 'power2.out' }),
+        y: gsap.quickTo(o, 'y', { duration: 0.9, ease: 'power2.out' })
+      }));
+      on(fsec, 'mousemove', ev => {
+        tos.forEach(t => {
+          const r = t.el.getBoundingClientRect();
+          const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+          const dx = cx - ev.clientX, dy = cy - ev.clientY;
+          const d = Math.hypot(dx, dy) || 1;
+          if (d < 220) { const f = (220 - d) / 220 * 70; t.x(dx / d * f); t.y(dy / d * f); }
+          else { t.x(0); t.y(0); }
+        });
+      });
+      on(fsec, 'mouseleave', () => tos.forEach(t => { t.x(0); t.y(0); }));
+    }
+    // process steps
+    qa('[data-step]').forEach(step => {
+      ST.create({
+        trigger: step, start: 'top 62%', end: 'bottom 30%',
+        onToggle: self => { step.style.opacity = self.isActive ? '1' : '.35'; }
+      });
+    });
+    const prog = q('[data-progress]');
+    if (prog) gsap.to(prog, { scaleY: 1, ease: 'none', scrollTrigger: { trigger: prog.parentElement, start: 'top 60%', end: 'bottom 40%', scrub: true } });
+    // horizontal details
+    const hsec = q('[data-hsec]'), track = q('[data-htrack]');
+    if (hsec && track) {
+      const dist = () => Math.max(0, track.scrollWidth - hsec.clientWidth + 80);
+      gsap.to(track, { x: () => -dist(), ease: 'none', scrollTrigger: { trigger: hsec, pin: true, scrub: 1, start: 'top top', end: () => '+=' + dist(), invalidateOnRefresh: true } });
+    }
+    // product hover
+    if (canHover) qa('[data-prodcard]').forEach(card => {
+      const front = card.querySelector('[data-prodfront]'), back = card.querySelector('[data-prodback]');
+      on(card, 'mouseenter', () => { if (back) back.style.opacity = '1'; if (front) front.style.transform = 'scale(1.04)'; });
+      on(card, 'mouseleave', () => { if (back) back.style.opacity = '0'; if (front) front.style.transform = 'scale(1)'; });
+    });
+    // magnetic buttons
+    if (canHover) qa('[data-magnetic]').forEach(b => {
+      const bx = gsap.quickTo(b, 'x', { duration: 0.4, ease: 'power3.out' });
+      const by = gsap.quickTo(b, 'y', { duration: 0.4, ease: 'power3.out' });
+      on(b, 'mousemove', ev => {
+        const r = b.getBoundingClientRect();
+        bx((ev.clientX - r.left - r.width / 2) * 0.18);
+        by((ev.clientY - r.top - r.height / 2) * 0.3);
+      });
+      on(b, 'mouseleave', () => { bx(0); by(0); });
+    });
+    setTimeout(() => ST.refresh(), 600);
+  }
+}
+</script>
+</body>
+</html>
