@@ -45,6 +45,8 @@ export function useScrollFX() {
 
     if (!reduced) {
       lenis = new Lenis({ lerp: 0.09 })
+      // Exposto para a modal de produto travar/destravar a rolagem suave.
+      ;(window as unknown as { __lenis?: Lenis }).__lenis = lenis
       const raf = (t: number) => {
         lenis!.raf(t)
         rafId = requestAnimationFrame(raf)
@@ -274,6 +276,7 @@ export function useScrollFX() {
     }
 
     return () => {
+      delete (window as unknown as { __lenis?: Lenis }).__lenis
       if (sweepTimer) clearInterval(sweepTimer)
       off.forEach(f => f())
       if (rafId) cancelAnimationFrame(rafId)
