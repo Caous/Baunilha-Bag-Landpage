@@ -9,15 +9,24 @@ export function Hero() {
     el.muted = true
     el.defaultMuted = true
     el.setAttribute('muted', '')
+    // iOS antigo exige o atributo webkit-playsinline; sem inline o Safari
+    // exibe o botão de play nativo sobre o vídeo.
+    el.setAttribute('webkit-playsinline', '')
+    el.removeAttribute('controls')
     const tryPlay = () => {
       if (el.paused) el.play().catch(() => {})
     }
     tryPlay()
-    // Se o primeiro play falhar (aba em segundo plano, mídia ainda carregando),
-    // tenta de novo quando o vídeo estiver pronto, a aba voltar ao foco ou no primeiro toque.
+    // Se o primeiro play falhar (aba em segundo plano, modo economia de energia,
+    // mídia ainda carregando), tenta de novo quando o vídeo estiver pronto,
+    // a aba voltar ao foco ou em qualquer primeira interação (toque, rolagem, clique).
+    el.addEventListener('loadedmetadata', tryPlay, { once: true })
     el.addEventListener('canplay', tryPlay, { once: true })
+    el.addEventListener('canplaythrough', tryPlay, { once: true })
     document.addEventListener('visibilitychange', tryPlay)
     window.addEventListener('touchstart', tryPlay, { once: true, passive: true })
+    window.addEventListener('pointerdown', tryPlay, { once: true, passive: true })
+    window.addEventListener('scroll', tryPlay, { once: true, passive: true })
   }, [])
 
   return (
@@ -31,6 +40,8 @@ export function Hero() {
           muted
           loop
           playsInline
+          disablePictureInPicture
+          controls={false}
           preload="auto"
           aria-label="Vídeo do atelier: mãos alisando tecido de linho cru sobre a mesa"
         />
