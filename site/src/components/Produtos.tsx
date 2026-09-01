@@ -1,6 +1,10 @@
-import { PRODUCTS, STORE_URL } from '../data/site'
+import { useState } from 'react'
+import { PRODUCTS, waBuy, type Product } from '../data/site'
+import { ProductModal } from './ProductModal'
 
 export function Produtos() {
+  const [selected, setSelected] = useState<Product | null>(null)
+
   return (
     <section id="produtos" className="section produtos">
       <div className="produtos-inner">
@@ -19,23 +23,38 @@ export function Produtos() {
         <div className="produtos-grid">
           {PRODUCTS.map(prod => (
             <article className="prod-card" key={prod.name}>
-              <a href={STORE_URL} className="prod-media" aria-label={`Ver ${prod.name} na loja`}>
+              <button
+                type="button"
+                className="prod-media"
+                aria-label={`Ver fotos da peça ${prod.name}`}
+                onClick={() => setSelected(prod)}
+              >
                 <img className="prod-front" src={prod.front} alt={prod.alt} loading="lazy" />
                 <img className="prod-back" src={prod.back} alt="" aria-hidden="true" loading="lazy" />
-              </a>
+              </button>
               <div className="prod-info">
                 <p className="prod-cat">{prod.category}</p>
                 <h3>{prod.name}</h3>
                 <p className="prod-price">{prod.price}</p>
               </div>
               <div className="prod-actions">
-                <a href={STORE_URL} className="btn btn-outline">Ver peça</a>
-                <a href={STORE_URL} className="btn btn-dark">Comprar</a>
+                <button type="button" className="btn btn-outline" onClick={() => setSelected(prod)}>
+                  Ver peça
+                </button>
+                <a
+                  href={waBuy(prod.name, prod.price)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-dark"
+                >
+                  Comprar
+                </a>
               </div>
             </article>
           ))}
         </div>
       </div>
+      {selected && <ProductModal product={selected} onClose={() => setSelected(null)} />}
     </section>
   )
 }
