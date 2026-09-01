@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://baunilha-bag.vercel.app/sitemap.xml

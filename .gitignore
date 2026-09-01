@@ -1,0 +1,25 @@
+# Dependências
+node_modules/
+
+# Build
+dist/
+*.tsbuildinfo
+
+# Vercel
+.vercel/
+
+# Logs
+*.log
+
+# Ambiente
+.env
+.env.local
+.env.*.local
+
+# Editor / SO
+.idea/
+.DS_Store
+Thumbs.db
+
+# Arquivos do canvas de design
+.thumbnail
