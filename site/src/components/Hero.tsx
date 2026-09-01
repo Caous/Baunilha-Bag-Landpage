@@ -1,17 +1,37 @@
+import { useCallback } from 'react'
 import { WA_SOB_MEDIDA } from '../data/site'
 
 export function Hero() {
+  // React não renderiza o atributo `muted` no HTML, o que bloqueia o autoplay
+  // em navegadores mobile — força via DOM e dispara o play manualmente.
+  const videoRef = useCallback((el: HTMLVideoElement | null) => {
+    if (!el) return
+    el.muted = true
+    el.defaultMuted = true
+    el.setAttribute('muted', '')
+    const tryPlay = () => {
+      if (el.paused) el.play().catch(() => {})
+    }
+    tryPlay()
+    // Se o primeiro play falhar (aba em segundo plano, mídia ainda carregando),
+    // tenta de novo quando o vídeo estiver pronto, a aba voltar ao foco ou no primeiro toque.
+    el.addEventListener('canplay', tryPlay, { once: true })
+    document.addEventListener('visibilitychange', tryPlay)
+    window.addEventListener('touchstart', tryPlay, { once: true, passive: true })
+  }, [])
+
   return (
     <section id="topo" className="hero" data-hero="1">
       <div className="hero-media" data-hero-media="1">
         <video
+          ref={videoRef}
           src="/video/atelier-hero.mp4"
           poster="/images/hero-poster.webp"
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           aria-label="Vídeo do atelier: mãos alisando tecido de linho cru sobre a mesa"
         />
         <div className="hero-overlay-x" />

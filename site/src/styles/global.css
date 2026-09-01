@@ -454,9 +454,13 @@ img { max-width: 100%; }
 .prod-media {
   position: relative;
   display: block;
+  width: 100%;
   aspect-ratio: 3 / 4;
   overflow: hidden;
   background: var(--bg-card);
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }
 
 .prod-media img {
@@ -710,6 +714,109 @@ img { max-width: 100%; }
 .site-footer .footer-meta { display: flex; align-items: center; gap: 20px; }
 .site-footer .footer-meta .made { font-family: var(--mono); font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--accent); }
 .site-footer .footer-meta .copy { font-family: var(--mono); font-size: 10px; letter-spacing: 1.6px; color: var(--ink-muted); }
+
+/* ---------- Modal de produto ---------- */
+.product-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(31, 24, 20, .55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(12px, 3vw, 40px);
+}
+
+.product-modal {
+  position: relative;
+  background: var(--bg);
+  width: min(960px, 100%);
+  max-height: min(88vh, 88svh);
+  overflow-y: auto;
+  padding: clamp(20px, 4vw, 44px);
+  box-shadow: 0 24px 80px rgba(31, 24, 20, .35);
+}
+
+.product-modal-close {
+  position: sticky;
+  top: 0;
+  float: right;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(31, 24, 20, .2);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background .3s, color .3s;
+}
+
+.product-modal-close:hover { background: var(--ink); color: var(--cream); }
+
+.product-modal-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: clamp(20px, 3vw, 44px);
+  align-items: start;
+}
+
+.product-modal-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(10px, 1.4vw, 18px);
+}
+
+.product-modal-gallery img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+  background: var(--bg-card);
+}
+
+.product-modal-gallery img:first-child {
+  grid-column: 1 / -1;
+  aspect-ratio: 4 / 3;
+}
+
+.product-modal-info h3 {
+  font-family: var(--serif);
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 500;
+  margin: 8px 0 10px;
+}
+
+.product-modal-info .prod-cat {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin: 0;
+}
+
+.product-modal-price {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin: 0 0 18px;
+}
+
+.product-modal-note {
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin: 0 0 28px;
+}
+
+@media (max-width: 720px) {
+  .product-modal-body { grid-template-columns: 1fr; }
+  .product-modal-info .btn { width: 100%; }
+}
 
 /* ---------- WhatsApp flutuante ---------- */
 .wa-fab {

@@ -11,6 +11,10 @@ export const WA_MAIN = waLink('Olá, Valéria! Vi o site da Baunilha Bag e gosta
 export const WA_SOB_MEDIDA = waLink('Olá, Valéria! Vi o site da Baunilha Bag e gostaria de pedir uma peça sob medida.')
 export const WA_AVALIACAO = waLink('Olá, Valéria! Tenho uma peça que precisa de ajuste ou reparo e gostaria de uma avaliação.')
 
+export function waBuy(productName: string, price: string): string {
+  return waLink(`Olá, Valéria! Vi o site da Baunilha Bag e gostaria de comprar a peça "${productName}" (${price}).`)
+}
+
 export interface Category {
   index: string
   tag: string
@@ -38,6 +42,8 @@ export interface Product {
   front: string
   back: string
   alt: string
+  /** Todas as imagens exibidas na modal "Ver peça". */
+  images: Array<{ src: string; alt: string }>
 }
 
 export const PRODUCTS: Product[] = [
@@ -48,6 +54,11 @@ export const PRODUCTS: Product[] = [
     front: '/images/necessaires.webp',
     back: '/images/forro-etiqueta.webp',
     alt: 'Nécessaire Siena em lona cream com zíper caramelo',
+    images: [
+      { src: '/images/necessaires.webp', alt: 'Nécessaire Siena em lona cream com zíper caramelo' },
+      { src: '/images/forro-etiqueta.webp', alt: 'Forro listrado e etiqueta costurada da Nécessaire Siena' },
+      { src: '/images/ziper-latao.webp', alt: 'Detalhe do zíper com ferragem de latão' },
+    ],
   },
   {
     category: 'Bolsas / 02',
@@ -56,6 +67,11 @@ export const PRODUCTS: Product[] = [
     front: '/images/bolsas.webp',
     back: '/images/linho-textura.webp',
     alt: 'Bolsa Aurora estruturada em lona marfim com alças cacau',
+    images: [
+      { src: '/images/bolsas.webp', alt: 'Bolsa Aurora estruturada em lona marfim com alças cacau' },
+      { src: '/images/linho-textura.webp', alt: 'Textura do linho natural da Bolsa Aurora' },
+      { src: '/images/costura-reta.webp', alt: 'Costura reta em linha caramelo' },
+    ],
   },
   {
     category: 'Trabalho / 03',
@@ -64,6 +80,11 @@ export const PRODUCTS: Product[] = [
     front: '/images/porta-notebook.webp',
     back: '/images/costura-reta.webp',
     alt: 'Porta-notebook Verona acolchoado em matelassê cream',
+    images: [
+      { src: '/images/porta-notebook.webp', alt: 'Porta-notebook Verona acolchoado em matelassê cream' },
+      { src: '/images/costura-reta.webp', alt: 'Costura reta do acolchoado matelassê' },
+      { src: '/images/ziper-latao.webp', alt: 'Zíper de latão sobre matelassê marfim' },
+    ],
   },
   {
     category: 'Masculino / 04',
@@ -72,6 +93,11 @@ export const PRODUCTS: Product[] = [
     front: '/images/masculinas.webp',
     back: '/images/forro-etiqueta.webp',
     alt: 'Nécessaire Cedro masculina em lona encerada cacau',
+    images: [
+      { src: '/images/masculinas.webp', alt: 'Nécessaire Cedro masculina em lona encerada cacau' },
+      { src: '/images/forro-etiqueta.webp', alt: 'Forro e etiqueta interna da Nécessaire Cedro' },
+      { src: '/images/ziper-latao.webp', alt: 'Detalhe do zíper com ferragem de latão' },
+    ],
   },
 ]
 
