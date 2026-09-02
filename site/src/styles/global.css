@@ -136,12 +136,17 @@ img { max-width: 100%; }
 }
 
 .site-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-family: var(--serif);
   font-size: 24px;
   font-weight: 600;
   letter-spacing: .5px;
   color: var(--ink);
 }
+
+.site-logo svg { flex-shrink: 0; }
 
 .site-nav { display: flex; align-items: center; gap: clamp(14px, 2.5vw, 32px); }
 

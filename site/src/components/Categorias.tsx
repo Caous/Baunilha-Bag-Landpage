@@ -22,7 +22,7 @@ export function Categorias() {
               <h3>{cat.title}</h3>
               <a href={cat.href} className="explore">Explorar →</a>
             </div>
-            <p className="sframe-brand">Baunilha Bag — atelier</p>
+            <p className="sframe-brand">Baunilha Bags — atelier</p>
           </div>
         ))}
       </div>

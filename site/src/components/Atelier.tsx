@@ -11,7 +11,7 @@ export function Atelier() {
             </span>
           </h2>
           <p className="body-text" data-reveal="1">
-            Na Baunilha Bag, cada peça passa pelas mãos da Valéria: escolha do tecido, corte, estrutura, costura e
+            Na Baunilha Bags, cada peça passa pelas mãos da Valéria: escolha do tecido, corte, estrutura, costura e
             acabamento.
           </p>
           <p className="body-text" data-reveal="1" style={{ marginBottom: 6 }}>

@@ -7,12 +7,12 @@ export function waLink(message: string): string {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
 }
 
-export const WA_MAIN = waLink('Olá, Valéria! Vi o site da Baunilha Bag e gostaria de conversar.')
-export const WA_SOB_MEDIDA = waLink('Olá, Valéria! Vi o site da Baunilha Bag e gostaria de pedir uma peça sob medida.')
+export const WA_MAIN = waLink('Olá, Valéria! Vi o site da Baunilha Bags e gostaria de conversar.')
+export const WA_SOB_MEDIDA = waLink('Olá, Valéria! Vi o site da Baunilha Bags e gostaria de pedir uma peça sob medida.')
 export const WA_AVALIACAO = waLink('Olá, Valéria! Tenho uma peça que precisa de ajuste ou reparo e gostaria de uma avaliação.')
 
 export function waBuy(productName: string, price: string): string {
-  return waLink(`Olá, Valéria! Vi o site da Baunilha Bag e gostaria de comprar a peça "${productName}" (${price}).`)
+  return waLink(`Olá, Valéria! Vi o site da Baunilha Bags e gostaria de comprar a peça "${productName}" (${price}).`)
 }
 
 export interface Category {
@@ -116,12 +116,12 @@ export const PROCESS_STEPS: ProcessStep[] = [
 ]
 
 export const IDEA_OPTIONS = [
-  { label: 'Quero um porta-notebook', message: 'Olá, Valéria! Vi o site da Baunilha Bag e gostaria de conversar sobre um porta-notebook personalizado.' },
-  { label: 'Quero uma bolsa', message: 'Olá, Valéria! Vi o site da Baunilha Bag e gostaria de conversar sobre uma bolsa personalizada.' },
-  { label: 'Quero uma nécessaire', message: 'Olá, Valéria! Vi o site da Baunilha Bag e gostaria de conversar sobre uma nécessaire personalizada.' },
-  { label: 'Quero adaptar uma peça', message: 'Olá, Valéria! Vi o site da Baunilha Bag e gostaria de adaptar uma peça que já tenho.' },
-  { label: 'Preciso de um ajuste', message: 'Olá, Valéria! Vi o site da Baunilha Bag e preciso de um ajuste em uma peça.' },
-  { label: 'Tenho outra ideia', message: 'Olá, Valéria! Vi o site da Baunilha Bag e tenho uma ideia diferente para conversar com você.' },
+  { label: 'Quero um porta-notebook', message: 'Olá, Valéria! Vi o site da Baunilha Bags e gostaria de conversar sobre um porta-notebook personalizado.' },
+  { label: 'Quero uma bolsa', message: 'Olá, Valéria! Vi o site da Baunilha Bags e gostaria de conversar sobre uma bolsa personalizada.' },
+  { label: 'Quero uma nécessaire', message: 'Olá, Valéria! Vi o site da Baunilha Bags e gostaria de conversar sobre uma nécessaire personalizada.' },
+  { label: 'Quero adaptar uma peça', message: 'Olá, Valéria! Vi o site da Baunilha Bags e gostaria de adaptar uma peça que já tenho.' },
+  { label: 'Preciso de um ajuste', message: 'Olá, Valéria! Vi o site da Baunilha Bags e preciso de um ajuste em uma peça.' },
+  { label: 'Tenho outra ideia', message: 'Olá, Valéria! Vi o site da Baunilha Bags e tenho uma ideia diferente para conversar com você.' },
 ]
 
 export const REPAIR_SERVICES = [
@@ -167,6 +167,6 @@ export const FLOAT_OBJECTS = [
 
 export const TESTIMONIAL_PLACEHOLDERS = [
   'A primeira história contada por um cliente vai morar aqui.',
-  'Recebeu uma peça da Baunilha Bag? Conte para a gente.',
+  'Recebeu uma peça da Baunilha Bags? Conte para a gente.',
   'Avaliações reais, uma peça de cada vez.',
 ]

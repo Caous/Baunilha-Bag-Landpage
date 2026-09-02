@@ -18,7 +18,7 @@ export function Sobre() {
               <span className="line" data-line="1">existem <em>duas mãos</em>.</span>
             </span>
           </h2>
-          <p className="body-text" data-reveal="1">Baunilha Bag é o atelier da Valéria.</p>
+          <p className="body-text" data-reveal="1">Baunilha Bags é o atelier da Valéria.</p>
           <p className="body-text" data-reveal="1">
             Um espaço onde tecido, experiência e cuidado se transformam em peças feitas para acompanhar pessoas de
             verdade.

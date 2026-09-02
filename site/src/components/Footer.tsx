@@ -4,7 +4,7 @@ export function Footer() {
   return (
     <footer className="site-footer">
       <div className="site-footer-inner">
-        <a href="#topo" className="footer-logo">Baunilha Bag</a>
+        <a href="#topo" className="footer-logo">Baunilha Bags</a>
         <nav aria-label="Rodapé">
           <a href="#produtos">Produtos</a>
           <a href="#personalizacao">Sob medida</a>
@@ -15,7 +15,7 @@ export function Footer() {
         </nav>
         <div className="footer-meta">
           <span className="made">Feito à mão</span>
-          <span className="copy">© {new Date().getFullYear()} Baunilha Bag</span>
+          <span className="copy">© {new Date().getFullYear()} Baunilha Bags</span>
         </div>
       </div>
     </footer>

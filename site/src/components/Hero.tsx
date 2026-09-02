@@ -60,7 +60,7 @@ export function Hero() {
           </span>
         </h1>
         <p className="hero-lead" data-reveal="1">
-          Peças artesanais, acessórios e projetos em tecido criados um a um no atelier Baunilha Bag.
+          Peças artesanais, acessórios e projetos em tecido criados um a um no atelier Baunilha Bags.
         </p>
         <div className="hero-ctas" data-reveal="1">
           <a href="#produtos" className="btn btn-dark" data-magnetic="1">Conhecer as peças</a>
