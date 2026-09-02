@@ -150,7 +150,14 @@ img { max-width: 100%; }
   font-size: 11px;
   letter-spacing: 1.8px;
   text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 1px 6px rgba(31, 24, 20, .35);
+  transition: color .4s, text-shadow .4s;
+}
+
+.site-header.solid .nav-link {
   color: var(--ink-soft);
+  text-shadow: none;
 }
 
 .site-nav .nav-cta {
@@ -403,6 +410,16 @@ img { max-width: 100%; }
 .float-obj-4 { bottom: 18%; right: 9%; width: clamp(80px, 10vw, 130px); }
 .float-obj-5 { top: 52%; right: 2%; width: clamp(110px, 13vw, 180px); }
 .float-obj-6 { top: 44%; left: 2%; width: clamp(90px, 10vw, 140px); }
+.float-obj-7 { top: 6%; left: 36%; width: clamp(70px, 8vw, 110px); }
+.float-obj-8 { top: 9%; right: 28%; width: clamp(70px, 8vw, 105px); }
+.float-obj-9 { bottom: 5%; right: 27%; width: clamp(90px, 11vw, 150px); }
+.float-obj-10 { bottom: 7%; left: 31%; width: clamp(70px, 8vw, 110px); }
+.float-obj-11 { top: 29%; left: 13%; width: clamp(70px, 9vw, 115px); }
+.float-obj-12 { top: 31%; right: 14%; width: clamp(80px, 9vw, 125px); }
+
+@media (max-width: 640px) {
+  .float-obj-7, .float-obj-8, .float-obj-10, .float-obj-12 { display: none; }
+}
 
 /* ---------- Processo ---------- */
 .processo { background: var(--bg); }
