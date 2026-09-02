@@ -156,7 +156,13 @@ export const FLOAT_OBJECTS = [
   { image: '/images/ferramenta-3.webp', className: 'float-obj float-obj-3', anim: 'a' },
   { image: '/images/ajustes-reparos.webp', className: 'float-obj float-obj-4', anim: 'b' },
   { image: '/images/ferramenta-4.webp', className: 'float-obj float-obj-5', anim: 'a' },
-  { image: '/images/ferramenta-4.webp', className: 'float-obj float-obj-6', anim: 'a' },
+  { image: '/images/ferramenta-regua.webp', className: 'float-obj float-obj-6', anim: 'b' },
+  { image: '/images/ferramenta-carretel.webp', className: 'float-obj float-obj-7', anim: 'a' },
+  { image: '/images/ferramenta-botoes.webp', className: 'float-obj float-obj-8', anim: 'b' },
+  { image: '/images/ferramenta-balancim.webp', className: 'float-obj float-obj-9', anim: 'a' },
+  { image: '/images/ferramenta-calcadores.webp', className: 'float-obj float-obj-10', anim: 'b' },
+  { image: '/images/ferramenta-alfinetes.webp', className: 'float-obj float-obj-11', anim: 'a' },
+  { image: '/images/ferramenta-porta-alfinetes.webp', className: 'float-obj float-obj-12', anim: 'b' },
 ]
 
 export const TESTIMONIAL_PLACEHOLDERS = [
